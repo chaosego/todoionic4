@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoadingController, ToastController, AlertController } from '@ionic/angular';
+import { LoadingController, ToastController, AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +8,7 @@ import { LoadingController, ToastController, AlertController } from '@ionic/angu
 })
 export class HomePage {
 
-  constructor(private loadingCtrl: LoadingController, private toastCtrl: ToastController, private alertCtrl: AlertController) {
+  constructor(private loadingCtrl: LoadingController, private toastCtrl: ToastController, private alertCtrl: AlertController, private navCtrl: NavController) {
 
   }
 
@@ -64,5 +64,9 @@ export class HomePage {
     })
 
     alert.present();
+  }
+
+  gotoOffice() {
+    this.navCtrl.navigateForward("/office/12345");  
   }
 }
