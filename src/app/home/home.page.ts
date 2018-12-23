@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { LoadingController, ToastController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +8,7 @@ import { LoadingController, ToastController } from '@ionic/angular';
 })
 export class HomePage {
 
-  constructor(private loadingCtrl: LoadingController, private toastCtrl: ToastController) {
+  constructor(private loadingCtrl: LoadingController, private toastCtrl: ToastController, private alertCtrl: AlertController) {
 
   }
 
@@ -34,5 +34,35 @@ export class HomePage {
     });
 
     toast.present();
+  }
+
+  async showAlert() {
+    let alert = await this.alertCtrl.create({
+      header: "Are you sure?",
+      subHeader: "This action cannot be undone!",
+      message: "Are you sure that you want to delete this entry from the database? This process is irreversible.",
+      inputs: [{
+        name: "username",
+        type: "text",
+        placeholder: "Packt Publishing"
+      }, {
+        name: "email",
+        type: "email",
+        placeholder: "support@packt.com"
+      }],
+      buttons: [{
+        text: "Cancel",
+        handler: () => {
+
+        }
+      }, {
+        text: "Delete",
+        handler: (data) => {
+          console.log(data);
+        }
+      }]
+    })
+
+    alert.present();
   }
 }
