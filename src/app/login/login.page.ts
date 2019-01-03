@@ -14,6 +14,9 @@ export class LoginPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    firebase.auth().onAuthStateChanged((user) => {
+      console.log(user);
+    })
   }
 
   login() {
