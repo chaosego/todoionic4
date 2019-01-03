@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'office/:id', loadChildren: './office/office.module#OfficePageModule' },
   { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'firestore', loadChildren: './firestore/firestore.module#FirestorePageModule' },
 ];
 
 @NgModule({
