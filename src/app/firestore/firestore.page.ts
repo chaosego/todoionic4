@@ -29,7 +29,10 @@ export class FirestorePage implements OnInit {
 
   getProducts() {
 
-    firebase.firestore().collection("products").get().then((queryDocumentSnapshot) => {
+    firebase.firestore().collection("products")
+    .where("product_price", "<=", 1000)
+    .orderBy("product_price", "desc")
+    .get().then((queryDocumentSnapshot) => {
       console.log(queryDocumentSnapshot.docs);
       this.products = queryDocumentSnapshot.docs;
     }).catch((err) => {
