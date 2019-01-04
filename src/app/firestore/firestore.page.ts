@@ -8,13 +8,30 @@ import * as firebase from 'firebase';
 })
 export class FirestorePage implements OnInit {
 
+  products: any[] = [];
+
   constructor() {
 
+    this.getProducts();
+
+  }
+  
+  createProduct() {
     firebase.firestore().collection("products").add({
       "product_name": "Samsung Galaxy S9",
       "product_price": "900"
     }).then(() => {
       console.log("Successfully added new document");
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+
+  getProducts() {
+
+    firebase.firestore().collection("products").get().then((queryDocumentSnapshot) => {
+      console.log(queryDocumentSnapshot.docs);
+      this.products = queryDocumentSnapshot.docs;
     }).catch((err) => {
       console.log(err);
     })
